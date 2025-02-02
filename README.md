@@ -6,8 +6,8 @@
 
   3. $ git switch [branch name] //자신의 branch 생성및 현재 local git의 repository를 해당 branch로 이동
      
-### add commit push
-  ## 해당 git hub에 업로드 하려는 경우
+## add commit push
+  ### 해당 git hub에 업로드 하려는 경우
    clone 한 위치에서 
   
   1. $ git add .
