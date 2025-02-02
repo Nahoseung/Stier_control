@@ -1,0 +1,8 @@
+prefix=/home/mannykim/catkin_ws/install
+
+Name: test_pp
+Description: Description of test_pp
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: rospy std_msgs geometry_msgs ublox_msgs erp42_msgs
