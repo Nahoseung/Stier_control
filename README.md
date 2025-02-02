@@ -8,7 +8,7 @@
      
 ### add commit push
   ## 해당 git hub에 업로드 하려는 경우
-  ## clone 한 위치에서 
+   clone 한 위치에서 
   
   1. $ git add .
   2. $ git commit -m " [write your commit messages]"
