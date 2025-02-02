@@ -1,8 +1,21 @@
+import os
+import signal
+import atexit
+import webbrowser
+from threading import Timer
 from flask import Flask, request, jsonify, render_template
 import pandas as pd
 import utm
 
 app = Flask(__name__)
+
+# 창 닫을 때 자동 종료하는 함수
+def cleanup():
+    print("Flask 서버 종료 중...")
+    os.kill(os.getpid(), signal.SIGTERM)  # 현재 프로세스를 종료
+
+# 프로그램 종료 시 cleanup 함수 실행
+atexit.register(cleanup)
 
 # 파일 경로
 FILE_PATH = '1_5_Waypoint_UTM.txt'
@@ -46,6 +59,11 @@ def update_rddf():
 
     return jsonify({'status': 'success', 'message': f'Point {point_id} updated'})
 
+# Flask 실행 후 자동으로 웹 브라우저 열기
+def open_browser():
+    webbrowser.open("http://127.0.0.1:5000")
+
 if __name__ == '__main__':
+    Timer(1, open_browser).start()  # 1초 후 브라우저 열기
     app.run(debug=True)
 

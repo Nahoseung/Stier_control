@@ -8,7 +8,7 @@
 </head>
 <body>
     <h3>Interactive Map with Draggable Markers</h3>
-    <div id="map" style="height: 500px; width: 100%;"></div>
+    <div id="map" style="height: 700px; width: 100%;"></div> <!-- ✅ 지도 크기 증가 -->
 
     <script>
         // ✅ 서버에서 마커 데이터를 가져옴
@@ -29,8 +29,12 @@
                 let centerLat = totalLat / waypoints.length;
                 let centerLng = totalLng / waypoints.length;
 
-                // ✅ 지도 중심을 마커 평균 위치로 설정
-                const map = L.map('map').setView([centerLat, centerLng], 18);
+                // ✅ 지도 중심을 마커 평균 위치로 설정 & 줌 레벨을 20으로 증가
+                const map = L.map('map', {
+                    zoomControl: true,  // 줌 컨트롤 유지
+                    maxZoom: 22,        // ✅ 최대 줌 레벨 증가
+                }).setView([centerLat, centerLng], 20);  // ✅ 확대 레벨 변경 (18 → 20)
+
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
                 // ✅ 마커 추가 및 이동 이벤트 처리
@@ -38,6 +42,11 @@
                     const marker = L.marker([point.Latitude, point.Longitude], { draggable: true }) // 드래그 가능
                         .addTo(map)
                         .bindPopup(`ID: ${point.ID}`);
+
+                    // ✅ 마커 클릭 시 자동으로 확대하도록 설정
+                    marker.on('click', function () {
+                        map.setView(marker.getLatLng(), 22);  // 클릭하면 줌 레벨 최대로 확대
+                    });
 
                     // ✅ 마커 이동 시 새로운 좌표를 서버로 전송
                     marker.on('dragend', function (event) {
