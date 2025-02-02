@@ -1,6 +1,8 @@
 # Stier_control
 ### Git hub 연동하는 법
   1. $ git clone https://github.com/Nahoseung/Stier_control.git
+  2. git clone https://<YOUR_GITHUB_USERNAME>:<YOUR_PERSONAL_ACCESS_TOKEN>@github.com/Nahoseung/Stier_control.git
+
 ### branch 만들기
   2. $ git branch [branch name]
 
