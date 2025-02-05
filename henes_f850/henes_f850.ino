@@ -4,10 +4,11 @@
 #include <std_msgs/Empty.h>
 #include <erp42_msgs/DriveCmd.h>
 #include <std_msgs/Int32.h>
+#include <std_msgs/Int16.h>
 #include <std_msgs/UInt16.h>
 #include <std_msgs/UInt8.h>
 #include <std_msgs/Float64.h>
-#include <std_msgs/Bool.h>5
+#include <std_msgs/Bool.h>
 
 SoftwareSerial BTSerial(0, 1); // 소프트웨어 시리얼 (TX,RX)
 
@@ -166,7 +167,7 @@ void controller() {
   Thro = pulseIn(A1, HIGH, 50000);  //  아날로그1번 핀의 pwm입력신호가 LOW로 바뀐 순간부터 HIGH로 바뀌는 순간까지의 경과시간을 마이크로초 단위로 Thro변수에 저장. 만약, 50ms시간동안 펄스의 변화가 없다면, 0값이 Thro변수에 저장된다.
   ALIE = pulseIn(A0, HIGH, 50000);  //  아날로그0번 핀의 pwm입력신호가 LOW로 바뀐 순간부터 HIGH로 바뀌는 순간까지의 경과시간을 마이크로초 단위로 Rudd변수에 저장. 만약, 50ms시간동안 펄스의 변화가 없다면, 0값이 Rudd변수에 저장된다.
   T = Thro/50; Thro = T*50; A = Aux/50; Aux = A*50; G = Gear/50; Gear = G*50; AL = ALIE/50; ALIE = AL*50; // 조종기 신호 안정화
-  if(ALIE>1700){ ALIE=1700; } else if(ALIE<1100){ ALIE = 1100; } // 조종기 ALIE(조향) 신호 최대 최소값 제한
+  if(ALIE>1700){ ALIE=1700; } else if(ALIE<100){ALIE=1450;} else if(ALIE<1100){ ALIE = 1100; } // 조종기 ALIE(조향) 신호 최대 최소값 제한
   if(Thro>1850){ Thro=1850; }  else if(Thro<1050){ ESTOP = 1;} else{ESTOP=0;} // 조종기 THRO(구동) 신호 최대값 제한, Throttle Cut할때 ESTOP신호 주도록 설정 
   if(Thro >= 1450) {
     tmpSpeed = map(Thro, 1450, 1850, 0, 255); // 조종기 THRO 신호를 Speed값으로 변환 
@@ -255,18 +256,25 @@ void drive(const erp42_msgs::DriveCmd &msg){
 
 ros::Subscriber<erp42_msgs::DriveCmd> sub("/erp42_serial/drive", &drive );
 
+/*
+std_msgs::Int16 steer_msg;  // 퍼블리시할 메시지 객체 생성
+ros::Publisher steer_pub("steer_topic", &steer_msg); 
+*/
+
 void setup() {
   Serial.begin(57600); // 시리얼 통신을 위한 Baudrate 
   pinMode(PWMPin, OUTPUT);
   pinMode(DirPin1, OUTPUT); // 조향 모터 
   pinMode(PWMone,OUTPUT);
   pinMode(Dirone,OUTPUT); // 구동 모터
-  pinMode(interruptPinA, INPUT_PULLUP); // 엔코더 핀 
-  pinMode(interruptPinB, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(interruptPinA), ISR_EncoderA, CHANGE); // 엔코더 값을 읽기 위한 인터럽트 서비스 루틴 
-  attachInterrupt(digitalPinToInterrupt(interruptPinB), ISR_EncoderB, CHANGE);  
+  //pinMode(interruptPinA, INPUT_PULLUP); // 엔코더 핀 
+  //pinMode(interruptPinB, INPUT_PULLUP);
+  //attachInterrupt(digitalPinToInterrupt(interruptPinA), ISR_EncoderA, CHANGE); // 엔코더 값을 읽기 위한 인터럽트 서비스 루틴 
+  //attachInterrupt(digitalPinToInterrupt(interruptPinB), ISR_EncoderB, CHANGE);  
   nh.initNode();
   nh.subscribe(sub);
+  //nh.advertise(steer_pub);
+  //Serial.println("\nSTART\n");
 }
 
 
@@ -282,12 +290,17 @@ void loop() {
     HSteer = map(HSteer, -20, 20, St_M+500, St_M-500);
     Mdrive(HSpeed);    //SPEED값 제어
     SteerCon(HSteer);    //STEER값 제어
-    }
+  }
   else { // MANUAL상태일때 플랫폼 제어
     Mdrive(Speed); //SPEED값 제어
     SteerCon(Steer); //STEER값 제어
-    }
+  }
+  //steer_msg.data = potential_val;
+  //steer_pub.publish(&steer_msg);  // 메시지 퍼블리시
+
   delay(1);
+  
+  
   Serial.print("AUX : ");
   Serial.print(Aux);
   Serial.print(" // Thro : ");
@@ -310,4 +323,5 @@ void loop() {
   Serial.print(Steer);
   Serial.print(" // current_ang : ");
   Serial.println(potential_val);
+  
 }
