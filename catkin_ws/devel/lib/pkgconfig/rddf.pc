@@ -1,0 +1,8 @@
+prefix=/home/mannykim/catkin_ws/devel
+
+Name: rddf
+Description: Description of rddf
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp roslib geometry_msgs

@@ -1,2 +1,2 @@
-erp42_msgs:gps/ROS-UTM-LLA:gps/gps_bringup:gps/rddf_recorder:gps/ublox/ublox:gps/ublox/ublox_gps:gps/ublox/ublox_msg_filters:gps/ublox/ublox_msgs:gps/ublox/ublox_serialization:gps/ublox_utils:platform_controller:test_pp
+erp42_msgs:gps/ROS-UTM-LLA:gps/gps_bringup:gps/rddf:gps/ublox/ublox:gps/ublox/ublox_gps:gps/ublox/ublox_msg_filters:gps/ublox/ublox_msgs:gps/ublox/ublox_serialization:gps/ublox_utils:platform_controller
 -DCATKIN_DEVEL_PREFIX=/home/mannykim/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/mannykim/catkin_ws/install -G Unix Makefiles

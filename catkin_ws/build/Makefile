@@ -714,43 +714,43 @@ platform_controller/fast:
 .PHONY : platform_controller/fast
 
 #=============================================================================
-# Target rules for targets named rddf_recorder
+# Target rules for targets named visualization_msgs_generate_messages_py
 
 # Build rule for target.
-rddf_recorder: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rddf_recorder
-.PHONY : rddf_recorder
+visualization_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 visualization_msgs_generate_messages_py
+.PHONY : visualization_msgs_generate_messages_py
 
 # fast build rule for target.
-rddf_recorder/fast:
-	$(MAKE) -f gps/rddf_recorder/CMakeFiles/rddf_recorder.dir/build.make gps/rddf_recorder/CMakeFiles/rddf_recorder.dir/build
-.PHONY : rddf_recorder/fast
+visualization_msgs_generate_messages_py/fast:
+	$(MAKE) -f gps/rddf/CMakeFiles/visualization_msgs_generate_messages_py.dir/build.make gps/rddf/CMakeFiles/visualization_msgs_generate_messages_py.dir/build
+.PHONY : visualization_msgs_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named geometry_msgs_generate_messages_nodejs
+# Target rules for targets named visualization_msgs_generate_messages_cpp
 
 # Build rule for target.
-geometry_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_nodejs
-.PHONY : geometry_msgs_generate_messages_nodejs
+visualization_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 visualization_msgs_generate_messages_cpp
+.PHONY : visualization_msgs_generate_messages_cpp
 
 # fast build rule for target.
-geometry_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f gps/rddf_recorder/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make gps/rddf_recorder/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
-.PHONY : geometry_msgs_generate_messages_nodejs/fast
+visualization_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f gps/rddf/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build.make gps/rddf/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build
+.PHONY : visualization_msgs_generate_messages_cpp/fast
 
 #=============================================================================
-# Target rules for targets named geometry_msgs_generate_messages_py
+# Target rules for targets named visualization_msgs_generate_messages_lisp
 
 # Build rule for target.
-geometry_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_py
-.PHONY : geometry_msgs_generate_messages_py
+visualization_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 visualization_msgs_generate_messages_lisp
+.PHONY : visualization_msgs_generate_messages_lisp
 
 # fast build rule for target.
-geometry_msgs_generate_messages_py/fast:
-	$(MAKE) -f gps/rddf_recorder/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make gps/rddf_recorder/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
-.PHONY : geometry_msgs_generate_messages_py/fast
+visualization_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f gps/rddf/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build.make gps/rddf/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build
+.PHONY : visualization_msgs_generate_messages_lisp/fast
 
 #=============================================================================
 # Target rules for targets named geometry_msgs_generate_messages_lisp
@@ -762,21 +762,21 @@ geometry_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 geometry_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f gps/rddf_recorder/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make gps/rddf_recorder/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f gps/rddf/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make gps/rddf/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
 .PHONY : geometry_msgs_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named geometry_msgs_generate_messages_eus
+# Target rules for targets named geometry_msgs_generate_messages_py
 
 # Build rule for target.
-geometry_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_eus
-.PHONY : geometry_msgs_generate_messages_eus
+geometry_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_py
+.PHONY : geometry_msgs_generate_messages_py
 
 # fast build rule for target.
-geometry_msgs_generate_messages_eus/fast:
-	$(MAKE) -f gps/rddf_recorder/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make gps/rddf_recorder/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
-.PHONY : geometry_msgs_generate_messages_eus/fast
+geometry_msgs_generate_messages_py/fast:
+	$(MAKE) -f gps/rddf/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make gps/rddf/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+.PHONY : geometry_msgs_generate_messages_py/fast
 
 #=============================================================================
 # Target rules for targets named geometry_msgs_generate_messages_cpp
@@ -788,8 +788,86 @@ geometry_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 geometry_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f gps/rddf_recorder/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make gps/rddf_recorder/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f gps/rddf/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make gps/rddf/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
 .PHONY : geometry_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named geometry_msgs_generate_messages_nodejs
+
+# Build rule for target.
+geometry_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_nodejs
+.PHONY : geometry_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+geometry_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f gps/rddf/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make gps/rddf/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
+.PHONY : geometry_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named visualization_msgs_generate_messages_eus
+
+# Build rule for target.
+visualization_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 visualization_msgs_generate_messages_eus
+.PHONY : visualization_msgs_generate_messages_eus
+
+# fast build rule for target.
+visualization_msgs_generate_messages_eus/fast:
+	$(MAKE) -f gps/rddf/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build.make gps/rddf/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build
+.PHONY : visualization_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named visualization_msgs_generate_messages_nodejs
+
+# Build rule for target.
+visualization_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 visualization_msgs_generate_messages_nodejs
+.PHONY : visualization_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+visualization_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f gps/rddf/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build.make gps/rddf/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build
+.PHONY : visualization_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named rddf_recorder
+
+# Build rule for target.
+rddf_recorder: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rddf_recorder
+.PHONY : rddf_recorder
+
+# fast build rule for target.
+rddf_recorder/fast:
+	$(MAKE) -f gps/rddf/CMakeFiles/rddf_recorder.dir/build.make gps/rddf/CMakeFiles/rddf_recorder.dir/build
+.PHONY : rddf_recorder/fast
+
+#=============================================================================
+# Target rules for targets named geometry_msgs_generate_messages_eus
+
+# Build rule for target.
+geometry_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_eus
+.PHONY : geometry_msgs_generate_messages_eus
+
+# fast build rule for target.
+geometry_msgs_generate_messages_eus/fast:
+	$(MAKE) -f gps/rddf/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make gps/rddf/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
+.PHONY : geometry_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named rddf_rviz
+
+# Build rule for target.
+rddf_rviz: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rddf_rviz
+.PHONY : rddf_rviz
+
+# fast build rule for target.
+rddf_rviz/fast:
+	$(MAKE) -f gps/rddf/CMakeFiles/rddf_rviz.dir/build.make gps/rddf/CMakeFiles/rddf_rviz.dir/build
+.PHONY : rddf_rviz/fast
 
 #=============================================================================
 # Target rules for targets named ublox_msgs
@@ -2053,19 +2131,6 @@ _ublox_msgs_generate_messages_check_deps_NavPVT/fast:
 .PHONY : _ublox_msgs_generate_messages_check_deps_NavPVT/fast
 
 #=============================================================================
-# Target rules for targets named pp
-
-# Build rule for target.
-pp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 pp
-.PHONY : pp
-
-# fast build rule for target.
-pp/fast:
-	$(MAKE) -f test_pp/CMakeFiles/pp.dir/build.make test_pp/CMakeFiles/pp.dir/build
-.PHONY : pp/fast
-
-#=============================================================================
 # Target rules for targets named ublox_gps
 
 # Build rule for target.
@@ -2952,12 +3017,18 @@ help:
 	@echo "... erp42_msgs_generate_messages_eus"
 	@echo "... erp42_msgs_genlisp"
 	@echo "... platform_controller"
-	@echo "... rddf_recorder"
-	@echo "... geometry_msgs_generate_messages_nodejs"
-	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... visualization_msgs_generate_messages_py"
+	@echo "... visualization_msgs_generate_messages_cpp"
+	@echo "... visualization_msgs_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_lisp"
-	@echo "... geometry_msgs_generate_messages_eus"
+	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_cpp"
+	@echo "... geometry_msgs_generate_messages_nodejs"
+	@echo "... visualization_msgs_generate_messages_eus"
+	@echo "... visualization_msgs_generate_messages_nodejs"
+	@echo "... rddf_recorder"
+	@echo "... geometry_msgs_generate_messages_eus"
+	@echo "... rddf_rviz"
 	@echo "... ublox_msgs"
 	@echo "... ublox_msgs_genpy"
 	@echo "... ublox_msgs_generate_messages_py"
@@ -3055,7 +3126,6 @@ help:
 	@echo "... _ublox_msgs_generate_messages_check_deps_CfgHNR"
 	@echo "... _ublox_msgs_generate_messages_check_deps_NavPOSLLH"
 	@echo "... _ublox_msgs_generate_messages_check_deps_NavPVT"
-	@echo "... pp"
 	@echo "... ublox_gps"
 	@echo "... nmea_msgs_generate_messages_nodejs"
 	@echo "... ublox_logger_node"
