@@ -1,0 +1,33 @@
+[INFO] [1739276917.897019]: Requesting topics...
+^C[INFO] [1739276926.930269]: Sending tx stop request
+[INFO] [1739276926.932856]: shutdown hook activated
+$ arduino
+[INFO] [1739277001.988206]: ROS Serial Python Node
+[INFO] [1739277001.996246]: Connecting to /dev/tty_arduino at 57600 baud
+[INFO] [1739277004.102360]: Requesting topics...
+[INFO] [1739277005.040784]: Note: subscribe buffer size is 280 bytes
+[INFO] [1739277005.043403]: Setup subscriber on /erp42_serial/drive [erp42_msgs/DriveCmd]
+[ERROR] [1739277073.152767]: Lost sync with device, restarting...
+[INFO] [1739277073.158679]: Requesting topics...
+[ERROR] [1739277088.164484]: Lost sync with device, restarting...
+[INFO] [1739277088.170530]: Requesting topics...
+[WARN] [1739277094.139078]: Last read step: syncflag
+[WARN] [1739277094.146224]: Run loop error: [Errno 5] Input/output error
+[WARN] [1739277094.152273]: Unexpected Error: <class 'termios.error'>
+Exception in thread Thread-6:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rosserial_python/SerialClient.py", line 786, in processWriteQueue
+    self._send(topic, msg)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rosserial_python/SerialClient.py", line 770, in _send
+    self._write(self.header + self.protocol_ver + length_bytes + length_checksum_bytes + topic_bytes + msg_bytes + msg_checksum_bytes)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rosserial_python/SerialClient.py", line 749, in _write
+    self.port.write(data)
+  File "/home/mannykim/.local/lib/python3.8/site-packages/serial/serialposix.py", line 615, in write
+    raise PortNotOpenError()
+serial.serialutil.PortNotOpenError: Attempting to use a port that is not open
+[INFO] [1739277095.157269]: Connecting to /dev/tty_arduino at 57600 baud
+

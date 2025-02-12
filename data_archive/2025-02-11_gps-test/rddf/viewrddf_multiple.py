@@ -1,0 +1,212 @@
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+import numpy as np
+
+def plot_coordinates_from_file(file_path, file_path2):
+    
+    coordinates2 = []
+    # 파일 읽기
+    with open(file_path2, 'r') as file:
+        for line in file:
+            parts = line.strip().split()
+            if len(parts) == 2:
+                try:
+                    x, y = float(parts[0]), float(parts[1])
+                    coordinates2.append((x, y))
+                except ValueError:
+                    continue
+    
+    if not coordinates2:
+        print("No valid coordinates found in the file.")
+        return
+    
+    # x, y 좌표 분리
+    x_vals, y_vals = zip(*coordinates2)
+    
+    # 그래프 설정
+    fig, ax = plt.subplots(figsize=(10, 10))
+    scatter = ax.scatter(x_vals, y_vals, color='yellow', picker=True)
+    ax.plot(x_vals, y_vals, linestyle='-', markersize=2, label='Tracker Path')
+
+    coordinates = []
+    
+    # 파일 읽기
+    with open(file_path, 'r') as file:
+        for line in file:
+            parts = line.strip().split()
+            if len(parts) == 2:
+                try:
+                    x, y = float(parts[0]), float(parts[1])
+                    coordinates.append((x, y))
+                except ValueError:
+                    continue
+    
+    if not coordinates:
+        print("No valid coordinates found in the file.")
+        return
+    
+    # x, y 좌표 분리
+    x_vals, y_vals = zip(*coordinates)
+    
+    # 그래프 설정
+    #fig, ax = plt.subplots(figsize=(10, 10))
+    scatter = ax.scatter(x_vals, y_vals, color='blue', picker=True)
+    ax.plot(x_vals, y_vals, linestyle='-', markersize=2, label='RDDF')
+    
+    # 시작점에 빨간 점 표시
+    ax.scatter(x_vals[0], y_vals[0], color='red', s=50, label='Start Point')
+    
+    # 마우스 이벤트 핸들러 추가
+    annot = ax.annotate("", xy=(0, 0), xytext=(15, 15), textcoords="offset points",
+                        bbox=dict(boxstyle="round", fc="w"), arrowprops=dict(arrowstyle="->"))
+    annot.set_visible(False)
+    
+    def on_pick(event):
+        idx = event.ind[0]
+        x, y = x_vals[idx], y_vals[idx]
+        annot.xy = (x, y)
+        annot.set_text(f"Idx: {idx}")
+        annot.set_visible(True)
+        fig.canvas.draw_idle()
+    
+    fig.canvas.mpl_connect("pick_event", on_pick)
+    
+    ax.set_xlabel('X Coordinate')
+    ax.set_ylabel('Y Coordinate')
+    ax.set_title('Coordinate Path Plot')
+    ax.legend()
+    ax.grid(True)
+    plt.show()
+
+
+################################################################################
+
+
+def get_path_from_file(file_path):
+    path = []
+    with open(file_path, 'r') as file:
+        for line in file:
+            parts = line.strip().split()
+            if len(parts) == 2:
+                try:
+                    x, y = float(parts[0]), float(parts[1])
+                    path.append((x, y))
+                except ValueError:
+                    continue
+    
+    if not path:
+        print("No valid coordinates found in the file.")
+        return
+    
+    return path
+
+def plot_path(path, ax, options):
+    # read options
+    label = None
+    if "label" in options:
+        label = str(options["label"])
+
+    color = None
+    if "color" in options:
+        color = options["color"]
+
+    plot_start = False
+    if "plot_start" in options:
+        plot_start = options["plot_start"]
+
+    # x, y 좌표 분리
+    x_vals, y_vals = zip(*path)
+    
+    # 그래프 설정
+    scatter = ax.scatter(x_vals, y_vals, color=color, picker=True, s=20)
+    ax.plot(x_vals, y_vals, linestyle='-', markersize=2, label=label, color=color)
+    
+    # 시작점에 빨간 점 표시
+    if plot_start:
+        ax.scatter(x_vals[0], y_vals[0], color='red', s=50, label='Start Point('+label+')')
+    
+    return
+
+def plot_path_from_file(file_path, ax, options):
+    path = get_path_from_file(file_path)
+    plot_path(path, ax, options)
+    return
+
+def main():
+    fig, ax = plt.subplots(figsize=(10, 10))
+
+    file_path_rddf = "2025-2-11_17-24_rddf-01.txt"
+    options_rddf = {
+        "label" : "2025-2-11_17-24_rddf-01.txt",
+        "color" : "black",
+        "start_point" : True
+    }
+    plot_path_from_file(file_path_rddf, ax, options_rddf)
+
+    # plot drive case
+
+    file_path_drive_005 = "2025-2-12_14-32_25-02-11_test-005_pp-old_ld-3.0.txt"
+    options_drive_005 = {
+        "label" : "pp-old_speed-10.0_ld-3.0",
+        "color" : "red",
+        "start_point" : False
+    }
+    plot_path_from_file(file_path_drive_005, ax, options_drive_005)
+
+    file_path_drive_006 = "2025-2-12_14-34_25-02-11_test-006_pp-old_ld-2.0.txt"
+    options_drive_006 = {
+        "label" : "pp-old_speed-10.0_ld-2.0",
+        "color" : "blue",
+        "start_point" : False
+    }
+    plot_path_from_file(file_path_drive_006, ax, options_drive_006)
+
+    file_path_drive_007 = "2025-2-12_14-36_25-02-11_test-007_pp-old_ld-1.0.txt"
+    options_drive_007 = {
+        "label" : "pp-old_speed-10.0_ld-1.0",
+        "color" : "green",
+        "start_point" : False
+    }
+    plot_path_from_file(file_path_drive_007, ax, options_drive_007)
+
+    file_path_drive_011 = "2025-2-12_14-10_25-02-11_test-011_pp-simple_speed-20.0_try-2.txt"
+    options_drive_011 = {
+        "label" : "pp-simple_speed-20.0",
+        "color" : "red",
+        "start_point" : False
+    }
+    #plot_path_from_file(file_path_drive_011, ax, options_drive_011)
+
+
+    file_path_drive_012 = "2025-2-12_14-24_25-02-11_test-012_pp-old_speed-20.0_ld-1.0.txt"
+    options_drive_012 = {
+        "label" : "pp-old_speed-20.0_ld-1.0",
+        "color" : "blue",
+        "start_point" : False
+    }
+    #plot_path_from_file(file_path_drive_012, ax, options_drive_012)
+
+    file_path_drive_013 = "2025-2-12_14-13_25-02-11_test-013_pp-old_speed-20.0_ld-3.0.txt"
+    options_drive_013 = {
+        "label" : "pp-old_speed-20.0_ld-3.0",
+        "color" : "green",
+        "start_point" : False
+    }
+    #plot_path_from_file(file_path_drive_013, ax, options_drive_013)
+
+    
+    # setup ax
+    ax.set_xlabel('X Coordinate')
+    ax.set_ylabel('Y Coordinate')
+    ax.set_title('RDDF Path Plot')
+    # axis tick
+    ax.xaxis.set_major_locator(ticker.MultipleLocator(1))  
+    ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
+    ax.legend()
+    ax.grid(True)
+    plt.show()
+    
+    return
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,11 @@
+AUX : 1450 // Thro : 1450 // ALIE : 1450 // State : 0 // ros_spd : 0 // ros_ang : 0 // PWM_spd : 0 // target_ang :500 // manual_spd : 0.00 // manual_ang : 500 // current_ang : 500
+AUX : 1450 // Thro : 1450 // ALIE : 1450 // State : 0 // ros_spd : 0 // ros_ang : 0 // PWM_spd : 0 // target_ang :500 // manual_spd : 0.00 // manual_ang : 500 // current_ang : 500
+AUX : 1450 // Thro : 1450 // ALIE : 1450 // State : 0 // ros_spd : 0 // ros_ang : 0 // PWM_spd : 0 // target_ang :500 // manual_spd : 0.00 // manual_ang : 500 // current_ang : 500
+AUX : 1450 // Thro : 1450 // ALIE : 1450 // State : 0 // ros_spd : 0 // ros_ang : 0 // PWM_spd : 0 // target_ang :500 // manual_spd : 0.00 // manual_ang : 500 // current_ang : 500
+AUX : 1450 // Thro : 1450 // ALIE : 1450 // State : 0 // ros_spd : 0 // ros_ang : 0 // PWM_spd : 0 // target_ang :500 // manual_spd : 0.00 // manual_ang : 500 // current_ang : 500
+AUX : 1450 // Thro : 1450 // ALIE : 1450 // State : 0 // ros_spd : 0 // ros_ang : 0 // PWM_spd : 0 // target_ang :500 // manual_spd : 0.00 // manual_ang : 500 // current_ang : 500
+AUX : 1450 // Thro : 1450 // ALIE : 1450 // State : 0 // ros_spd : 0 // ros_ang : 0 // PWM_spd : 0 // target_ang :500 // manual_spd : 0.00 // manual_ang : 500 // current_ang : 501
+AUX : 1450 // Thro : 1450 // ALIE : 1450 // State : 0 // ros_spd : 0 // ros_ang : 0 // PWM_spd : 0 // target_ang :500 // manual_spd : 0.00 // manual_ang : 500 // current_ang : 499
+AUX : 1450 // Thro : 1450 // ALIE : 1450 // State : 0 // ros_spd : 0 // ros_ang : 0 // PWM_spd : 0 // target_ang :500 // manual_spd : 0.00 // manual_ang : 500 // current_ang : 499
+AUX : 1450 // Thro : 1450 // ALIE : 1450 // State : 0 // ros_spd : 0 // ros_ang : 0 // PWM_spd : 0 // target_ang :500 // manual_spd : 0.00 // manual_ang : 500 // current_ang : 500
+AUX : 1450 // Thro : 1450 // ALIE : 1450 // State : 0 // ros_spd : 0 // ros_ang : 0 // PWM_spd : 0 // target_ang :500 // manual_spd : 0.00 // manual_ang : 500 // current_ang : 500

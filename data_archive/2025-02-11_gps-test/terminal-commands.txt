@@ -1,0 +1,12 @@
+commands
+2025-02-11
+
+alias ws_f850='cd ~/Stier_control/catkin_ws_henes-f850 && source ./devel/setup.bash'
+alias ws_1101='cd ~/catkin_ws_1101 && source ./devel/setup.bash'
+alias arduino='rosrun rosserial_python serial_node.py /dev/tty_arduino'
+alias rddf='rosrun stier rddf'
+
+record_rosbag() {
+    FILENAME="$(date +%Y-%m-%d-%H-%M-%S)_$1.bag"
+    rosbag record -O "$FILENAME" -a
+}
