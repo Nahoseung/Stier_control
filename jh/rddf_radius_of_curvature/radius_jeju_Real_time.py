@@ -28,10 +28,25 @@ def circle_from_3pts(x1, y1, x2, y2, x3, y3):
     return cx, cy, r
 
 # ---------------------------
-# 1) RDDF 경로 (UTM) 불러오기
-# ---------------------------
-file_path = "1_5_Waypoint_UTM (2).txt"  # 파일 경로
-df = pd.read_csv(file_path, sep=r"\s+", header=None, names=["idx","Easting","Northing"])
+# 0) RDDF 경로 (UTM) 불러오기
+def read_rddf_file(file_path):
+    # 파일의 첫 줄을 읽어 열 개수를 확인
+    with open(file_path, 'r') as f:
+        first_line = f.readline().strip()
+    tokens = first_line.split()
+    n_cols = len(tokens)
+    if n_cols == 3:
+        df = pd.read_csv(file_path, sep=r"\s+", header=None, names=["idx", "Easting", "Northing"])
+    elif n_cols == 2:
+        df = pd.read_csv(file_path, sep=r"\s+", header=None, names=["Easting", "Northing"])
+    else:
+        raise ValueError("파일 형식이 예상과 다릅니다. 2개 또는 3개의 열이 있어야 합니다.")
+    return df
+
+# 1) 데이터 읽기 (파일 형식에 따라 자동 판별)
+file_path = "2025-2-11_17-24_rddf-01.txt"  # 사용할 파일 경로
+df = read_rddf_file(file_path)
+
 x_arr = df["Easting"].values
 y_arr = df["Northing"].values
 
