@@ -1,0 +1,8 @@
+prefix=/home/hosungna/Stier/lab/Stier_control/Hosung/node_test/catkin_ws/devel
+
+Name: node_test1
+Description: Description of node_test1
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

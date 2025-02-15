@@ -1,0 +1,8 @@
+prefix=/home/hosungna/Stier/lab/Stier_control/Hosung/pp_simul/catkin_ws/devel
+
+Name: pp_simul
+Description: Description of pp_simul
+Version: 0.0.0
+Cflags: -I/home/hosungna/Stier/lab/Stier_control/Hosung/pp_simul/catkin_ws/src/pp_simul/include
+Libs: -L${prefix}/lib -lpp_simul
+Requires: roscpp rospy std_msgs geometry_msgs roslib

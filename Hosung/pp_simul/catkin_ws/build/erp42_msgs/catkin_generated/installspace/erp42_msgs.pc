@@ -1,0 +1,8 @@
+prefix=/home/hosungna/Stier/lab/Stier_control/Hosung/pp_simul/catkin_ws/install
+
+Name: erp42_msgs
+Description: Description of erp42_msgs
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: roscpp message_generation std_msgs message_runtime

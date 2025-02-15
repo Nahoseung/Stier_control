@@ -1,0 +1,2 @@
+node_test1
+-DCATKIN_DEVEL_PREFIX=/home/hosungna/Stier/lab/Stier_control/Hosung/node_test/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/hosungna/Stier/lab/Stier_control/Hosung/node_test/catkin_ws/install -G Unix Makefiles

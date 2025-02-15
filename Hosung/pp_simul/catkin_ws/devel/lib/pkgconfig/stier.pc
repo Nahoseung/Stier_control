@@ -1,0 +1,8 @@
+prefix=/home/hosungna/Stier/lab/Stier_control/Hosung/pp_simul/catkin_ws/devel
+
+Name: stier
+Description: Description of stier
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

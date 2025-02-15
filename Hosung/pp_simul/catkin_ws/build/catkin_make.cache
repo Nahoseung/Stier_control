@@ -1,0 +1,2 @@
+erp42_msgs:pp_simul:stier
+-DCATKIN_DEVEL_PREFIX=/home/hosungna/Stier/lab/Stier_control/Hosung/pp_simul/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/hosungna/Stier/lab/Stier_control/Hosung/pp_simul/catkin_ws/install -G Unix Makefiles

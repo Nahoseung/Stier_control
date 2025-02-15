@@ -1,0 +1,2 @@
+erp42_msgs:node_test2:stier
+-DCATKIN_DEVEL_PREFIX=/home/hosungna/Stier/lab/Stier_control/Hosung/node_test2/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/hosungna/Stier/lab/Stier_control/Hosung/node_test2/catkin_ws/install -G Unix Makefiles
