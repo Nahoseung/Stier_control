@@ -26,13 +26,13 @@ class DriveCmd {
         this.KPH = initObj.KPH
       }
       else {
-        this.KPH = 0;
+        this.KPH = 0.0;
       }
       if (initObj.hasOwnProperty('Deg')) {
         this.Deg = initObj.Deg
       }
       else {
-        this.Deg = 0;
+        this.Deg = 0.0;
       }
     }
   }
@@ -40,9 +40,9 @@ class DriveCmd {
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type DriveCmd
     // Serialize message field [KPH]
-    bufferOffset = _serializer.uint16(obj.KPH, buffer, bufferOffset);
+    bufferOffset = _serializer.float32(obj.KPH, buffer, bufferOffset);
     // Serialize message field [Deg]
-    bufferOffset = _serializer.int16(obj.Deg, buffer, bufferOffset);
+    bufferOffset = _serializer.float32(obj.Deg, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -51,14 +51,14 @@ class DriveCmd {
     let len;
     let data = new DriveCmd(null);
     // Deserialize message field [KPH]
-    data.KPH = _deserializer.uint16(buffer, bufferOffset);
+    data.KPH = _deserializer.float32(buffer, bufferOffset);
     // Deserialize message field [Deg]
-    data.Deg = _deserializer.int16(buffer, bufferOffset);
+    data.Deg = _deserializer.float32(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 4;
+    return 8;
   }
 
   static datatype() {
@@ -68,7 +68,7 @@ class DriveCmd {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '6121db023b8590a6c2929cbc6d249961';
+    return '53c3fce15cc38e7376d7cdb3768313e0';
   }
 
   static messageDefinition() {
@@ -77,8 +77,8 @@ class DriveCmd {
     ########################################
     # Messages
     ########################################
-    uint16 KPH
-    int16 Deg
+    float32 KPH
+    float32 Deg
     `;
   }
 
@@ -92,14 +92,14 @@ class DriveCmd {
       resolved.KPH = msg.KPH;
     }
     else {
-      resolved.KPH = 0
+      resolved.KPH = 0.0
     }
 
     if (msg.Deg !== undefined) {
       resolved.Deg = msg.Deg;
     }
     else {
-      resolved.Deg = 0
+      resolved.Deg = 0.0
     }
 
     return resolved;

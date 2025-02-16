@@ -8,16 +8,16 @@ import struct
 
 
 class DriveCmd(genpy.Message):
-  _md5sum = "6121db023b8590a6c2929cbc6d249961"
+  _md5sum = "53c3fce15cc38e7376d7cdb3768313e0"
   _type = "erp42_msgs/DriveCmd"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """########################################
 # Messages
 ########################################
-uint16 KPH
-int16 Deg"""
+float32 KPH
+float32 Deg"""
   __slots__ = ['KPH','Deg']
-  _slot_types = ['uint16','int16']
+  _slot_types = ['float32','float32']
 
   def __init__(self, *args, **kwds):
     """
@@ -37,12 +37,12 @@ int16 Deg"""
       super(DriveCmd, self).__init__(*args, **kwds)
       # message fields cannot be None, assign default values for those that are
       if self.KPH is None:
-        self.KPH = 0
+        self.KPH = 0.
       if self.Deg is None:
-        self.Deg = 0
+        self.Deg = 0.
     else:
-      self.KPH = 0
-      self.Deg = 0
+      self.KPH = 0.
+      self.Deg = 0.
 
   def _get_types(self):
     """
@@ -57,7 +57,7 @@ int16 Deg"""
     """
     try:
       _x = self
-      buff.write(_get_struct_Hh().pack(_x.KPH, _x.Deg))
+      buff.write(_get_struct_2f().pack(_x.KPH, _x.Deg))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -72,8 +72,8 @@ int16 Deg"""
       end = 0
       _x = self
       start = end
-      end += 4
-      (_x.KPH, _x.Deg,) = _get_struct_Hh().unpack(str[start:end])
+      end += 8
+      (_x.KPH, _x.Deg,) = _get_struct_2f().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -87,7 +87,7 @@ int16 Deg"""
     """
     try:
       _x = self
-      buff.write(_get_struct_Hh().pack(_x.KPH, _x.Deg))
+      buff.write(_get_struct_2f().pack(_x.KPH, _x.Deg))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -103,8 +103,8 @@ int16 Deg"""
       end = 0
       _x = self
       start = end
-      end += 4
-      (_x.KPH, _x.Deg,) = _get_struct_Hh().unpack(str[start:end])
+      end += 8
+      (_x.KPH, _x.Deg,) = _get_struct_2f().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -113,9 +113,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_Hh = None
-def _get_struct_Hh():
-    global _struct_Hh
-    if _struct_Hh is None:
-        _struct_Hh = struct.Struct("<Hh")
-    return _struct_Hh
+_struct_2f = None
+def _get_struct_2f():
+    global _struct_2f
+    if _struct_2f is None:
+        _struct_2f = struct.Struct("<2f")
+    return _struct_2f

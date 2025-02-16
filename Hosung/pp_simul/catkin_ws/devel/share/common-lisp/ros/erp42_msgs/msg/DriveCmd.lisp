@@ -10,13 +10,13 @@
   ((KPH
     :reader KPH
     :initarg :KPH
-    :type cl:fixnum
-    :initform 0)
+    :type cl:float
+    :initform 0.0)
    (Deg
     :reader Deg
     :initarg :Deg
-    :type cl:fixnum
-    :initform 0))
+    :type cl:float
+    :initform 0.0))
 )
 
 (cl:defclass DriveCmd (<DriveCmd>)
@@ -38,21 +38,31 @@
   (Deg m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <DriveCmd>) ostream)
   "Serializes a message object of type '<DriveCmd>"
-  (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'KPH)) ostream)
-  (cl:write-byte (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'KPH)) ostream)
-  (cl:let* ((signed (cl:slot-value msg 'Deg)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 65536) signed)))
-    (cl:write-byte (cl:ldb (cl:byte 8 0) unsigned) ostream)
-    (cl:write-byte (cl:ldb (cl:byte 8 8) unsigned) ostream)
-    )
+  (cl:let ((bits (roslisp-utils:encode-single-float-bits (cl:slot-value msg 'KPH))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-single-float-bits (cl:slot-value msg 'Deg))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream))
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <DriveCmd>) istream)
   "Deserializes a message object of type '<DriveCmd>"
-    (cl:setf (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'KPH)) (cl:read-byte istream))
-    (cl:setf (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'KPH)) (cl:read-byte istream))
-    (cl:let ((unsigned 0))
-      (cl:setf (cl:ldb (cl:byte 8 0) unsigned) (cl:read-byte istream))
-      (cl:setf (cl:ldb (cl:byte 8 8) unsigned) (cl:read-byte istream))
-      (cl:setf (cl:slot-value msg 'Deg) (cl:if (cl:< unsigned 32768) unsigned (cl:- unsigned 65536))))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'KPH) (roslisp-utils:decode-single-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'Deg) (roslisp-utils:decode-single-float-bits bits)))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<DriveCmd>)))
@@ -63,20 +73,20 @@
   "erp42_msgs/DriveCmd")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<DriveCmd>)))
   "Returns md5sum for a message object of type '<DriveCmd>"
-  "6121db023b8590a6c2929cbc6d249961")
+  "53c3fce15cc38e7376d7cdb3768313e0")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'DriveCmd)))
   "Returns md5sum for a message object of type 'DriveCmd"
-  "6121db023b8590a6c2929cbc6d249961")
+  "53c3fce15cc38e7376d7cdb3768313e0")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<DriveCmd>)))
   "Returns full string definition for message of type '<DriveCmd>"
-  (cl:format cl:nil "########################################~%# Messages~%########################################~%uint16 KPH~%int16 Deg~%~%"))
+  (cl:format cl:nil "########################################~%# Messages~%########################################~%float32 KPH~%float32 Deg~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'DriveCmd)))
   "Returns full string definition for message of type 'DriveCmd"
-  (cl:format cl:nil "########################################~%# Messages~%########################################~%uint16 KPH~%int16 Deg~%~%"))
+  (cl:format cl:nil "########################################~%# Messages~%########################################~%float32 KPH~%float32 Deg~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <DriveCmd>))
   (cl:+ 0
-     2
-     2
+     4
+     4
 ))
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <DriveCmd>))
   "Converts a ROS message object to a list"

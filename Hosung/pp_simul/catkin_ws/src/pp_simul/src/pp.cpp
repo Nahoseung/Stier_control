@@ -12,13 +12,17 @@
 #include "erp42_msgs/Utm.h"
 
 erp42_msgs::DriveCmd drive_msg;
-std_msgs::Float32 gps_speed;
+erp42_msgs::Utm utm_msg;
+// ros::Publisher drive_pub;
+
+
+
 
 const float PI_ = 3.141592653f;
 const float L = 1.04; 
 
-int cur_idx = 0, target_idx = 0, cnt = 0, fixed_speed = 10, once = 1;
-float speed = 0.0, cog = 0.0, dis = 0.0, Ld = 3.0;
+int cur_idx = 0, target_idx = 0, cnt = 0, once = 1;
+float speed = 0.0, cog = 0.0, dis = 0.0, Ld = 3.0, fixed_speed = 10.0;
 
 double** rddf = nullptr;
 
@@ -71,11 +75,15 @@ void pure_pursuit(float x, float y) {
 
     drive_msg.Deg = current_steer;
     drive_msg.KPH = fixed_speed;
+   
+    ROS_INFO("im pure pursuit : Im gonna  publish  %f , %f . ",current_steer, fixed_speed);
+    // drive_pub.publish(drive_msg);
 }
 
 void callback(const erp42_msgs::Utm::ConstPtr& msg) {
     float cur_x = msg->x;
     float cur_y = msg->y;
+    ROS_INFO("im call back: I got %f, %f in x,y. ",cur_x,cur_y);
     near_idx(cur_x, cur_y);
     pure_pursuit(cur_x, cur_y);
 }
@@ -112,8 +120,8 @@ int main(int argc, char **argv) {
      
 
     ros::Subscriber sub = nh.subscribe("utm", 1, callback);
-    ros::Rate loop_rate(8);
-
+    ros::Rate loop_rate(0.1);
+    
     while (ros::ok()) 
     {
         ros::spinOnce();

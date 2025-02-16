@@ -24,21 +24,21 @@ struct DriveCmd_
   typedef DriveCmd_<ContainerAllocator> Type;
 
   DriveCmd_()
-    : KPH(0)
-    , Deg(0)  {
+    : KPH(0.0)
+    , Deg(0.0)  {
     }
   DriveCmd_(const ContainerAllocator& _alloc)
-    : KPH(0)
-    , Deg(0)  {
+    : KPH(0.0)
+    , Deg(0.0)  {
   (void)_alloc;
     }
 
 
 
-   typedef uint16_t _KPH_type;
+   typedef float _KPH_type;
   _KPH_type KPH;
 
-   typedef int16_t _Deg_type;
+   typedef float _Deg_type;
   _Deg_type Deg;
 
 
@@ -128,12 +128,12 @@ struct MD5Sum< ::erp42_msgs::DriveCmd_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "6121db023b8590a6c2929cbc6d249961";
+    return "53c3fce15cc38e7376d7cdb3768313e0";
   }
 
   static const char* value(const ::erp42_msgs::DriveCmd_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x6121db023b8590a6ULL;
-  static const uint64_t static_value2 = 0xc2929cbc6d249961ULL;
+  static const uint64_t static_value1 = 0x53c3fce15cc38e73ULL;
+  static const uint64_t static_value2 = 0x76d7cdb3768313e0ULL;
 };
 
 template<class ContainerAllocator>
@@ -155,8 +155,8 @@ struct Definition< ::erp42_msgs::DriveCmd_<ContainerAllocator> >
     return "########################################\n"
 "# Messages\n"
 "########################################\n"
-"uint16 KPH\n"
-"int16 Deg\n"
+"float32 KPH\n"
+"float32 Deg\n"
 ;
   }
 
@@ -196,9 +196,9 @@ struct Printer< ::erp42_msgs::DriveCmd_<ContainerAllocator> >
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::erp42_msgs::DriveCmd_<ContainerAllocator>& v)
   {
     s << indent << "KPH: ";
-    Printer<uint16_t>::stream(s, indent + "  ", v.KPH);
+    Printer<float>::stream(s, indent + "  ", v.KPH);
     s << indent << "Deg: ";
-    Printer<int16_t>::stream(s, indent + "  ", v.Deg);
+    Printer<float>::stream(s, indent + "  ", v.Deg);
   }
 };
 

@@ -13,6 +13,9 @@
 
 
 erp42_msgs::Utm utm_msg;
+// ros::Publisher utm_pub;
+
+
 
 // struct PredictedState {
 //     float x;
@@ -30,6 +33,8 @@ float current_x=0.0, current_y = 0.0, current_heading = 0.0, dt = 0.15f ; // dt:
 void predict_future_state(const erp42_msgs::DriveCmd::ConstPtr& msg) {
     float current_speed = msg->KPH;
     float current_steer = msg->Deg;
+
+    ROS_INFO("im bmodel : Im got  %f , %f . ",current_steer, current_speed);
 
     // PredictedState result;
     
@@ -66,24 +71,8 @@ void predict_future_state(const erp42_msgs::DriveCmd::ConstPtr& msg) {
     utm_msg.x = current_x + (dt / 6.0f) * (k1_x + 2.0f * k2_x + 2.0f * k3_x + k4_x);
     utm_msg.y = current_y + (dt / 6.0f) * (k1_y + 2.0f * k2_y + 2.0f * k3_y + k4_y);
     utm_msg.heading = current_heading + (dt / 6.0f) * (k1_heading + 2.0f * k2_heading + 2.0f * k3_heading + k4_heading);
-
-
-    // // 가장 가까운 경로 포인트 찾기
-    // float min_dist = std::numeric_limits<float>::max();
-    // result.idx = cur_idx;
     
-    // int search_start = std::max(0, cur_idx - 10);
-    // int search_end = std::min(cnt - 1, cur_idx + 50);
-    
-    // for (int i = search_start; i < search_end; i++) {
-    //     float dist = std::sqrt(std::pow(result.x - rddf[i][0], 2) + 
-    //                          std::pow(result.y - rddf[i][1], 2));
-    //     if (dist < min_dist) {
-    //         min_dist = dist;
-    //         result.idx = i;
-    //     }
-    // }
-
+    ROS_INFO("im bmodel : I gonna publish  %f, %f in x,y. ", utm_msg.x, utm_msg.y);
 
 }
 
@@ -92,16 +81,25 @@ int main(int argc, char** argv)
 {
     ros::init(argc, argv, "bmodel_node");
     ros::NodeHandle nh;
-
+    ros::Publisher utm_pub = nh.advertise<erp42_msgs::Utm>("utm",1);
     ros::Subscriber sub = nh.subscribe("drive_cmd",1,predict_future_state);
 
-    ros::Publisher utm_pub = nh.advertise<erp42_msgs::Utm>("utm",1);
 
-    ros::Rate loop_rate(8);
+
+    ros::Rate loop_rate(0.1);
+
+    utm_msg.x = 302454.91;
+    utm_msg.y = 4123701.72;
+    // if(ros::ok()) 
+    // {
+    //     utm_pub.publish(utm_msg);
+    //     ROS_INFO("i do publish");
+    // }
+
     while(ros::ok())
     {
-        ros::spinOnce();
         utm_pub.publish(utm_msg);
+        ros::spinOnce();
         loop_rate.sleep();
     }
 

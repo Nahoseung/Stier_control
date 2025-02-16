@@ -19,12 +19,12 @@
 (defmethod erp42_msgs::DriveCmd
   (:init
    (&key
-    ((:KPH __KPH) 0)
-    ((:Deg __Deg) 0)
+    ((:KPH __KPH) 0.0)
+    ((:Deg __Deg) 0.0)
     )
    (send-super :init)
-   (setq _KPH (round __KPH))
-   (setq _Deg (round __Deg))
+   (setq _KPH (float __KPH))
+   (setq _Deg (float __Deg))
    self)
   (:KPH
    (&optional __KPH)
@@ -35,43 +35,43 @@
   (:serialization-length
    ()
    (+
-    ;; uint16 _KPH
-    2
-    ;; int16 _Deg
-    2
+    ;; float32 _KPH
+    4
+    ;; float32 _Deg
+    4
     ))
   (:serialize
    (&optional strm)
    (let ((s (if strm strm
               (make-string-output-stream (send self :serialization-length)))))
-     ;; uint16 _KPH
-       (write-word _KPH s)
-     ;; int16 _Deg
-       (write-word _Deg s)
+     ;; float32 _KPH
+       (sys::poke _KPH (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
+     ;; float32 _Deg
+       (sys::poke _Deg (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
-   ;; uint16 _KPH
-     (setq _KPH (sys::peek buf ptr- :short)) (incf ptr- 2)
-   ;; int16 _Deg
-     (setq _Deg (sys::peek buf ptr- :short)) (incf ptr- 2)
+   ;; float32 _KPH
+     (setq _KPH (sys::peek buf ptr- :float)) (incf ptr- 4)
+   ;; float32 _Deg
+     (setq _Deg (sys::peek buf ptr- :float)) (incf ptr- 4)
    ;;
    self)
   )
 
-(setf (get erp42_msgs::DriveCmd :md5sum-) "6121db023b8590a6c2929cbc6d249961")
+(setf (get erp42_msgs::DriveCmd :md5sum-) "53c3fce15cc38e7376d7cdb3768313e0")
 (setf (get erp42_msgs::DriveCmd :datatype-) "erp42_msgs/DriveCmd")
 (setf (get erp42_msgs::DriveCmd :definition-)
       "########################################
 # Messages
 ########################################
-uint16 KPH
-int16 Deg
+float32 KPH
+float32 Deg
 ")
 
 
 
-(provide :erp42_msgs/DriveCmd "6121db023b8590a6c2929cbc6d249961")
+(provide :erp42_msgs/DriveCmd "53c3fce15cc38e7376d7cdb3768313e0")
 
 
