@@ -1,8 +1,0 @@
-prefix=/home/mannykim/catkin_ws/install
-
-Name: rddf_recorder
-Description: Description of rddf_recorder
-Version: 0.0.1
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: roscpp roslib geometry_msgs

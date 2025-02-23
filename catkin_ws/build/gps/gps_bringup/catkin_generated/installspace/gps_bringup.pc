@@ -1,8 +1,0 @@
-prefix=/home/mannykim/catkin_ws/install
-
-Name: gps_bringup
-Description: Description of gps_bringup
-Version: 0.0.1
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

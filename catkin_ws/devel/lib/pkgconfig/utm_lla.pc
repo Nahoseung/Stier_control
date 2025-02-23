@@ -1,8 +1,0 @@
-prefix=/home/mannykim/catkin_ws/devel
-
-Name: utm_lla
-Description: Description of utm_lla
-Version: 0.0.0
-Cflags: -I/home/mannykim/catkin_ws/src/gps/ROS-UTM-LLA/include
-Libs: -L${prefix}/lib 
-Requires: 

@@ -1,8 +1,0 @@
-prefix=/home/mannykim/catkin_ws/devel
-
-Name: ublox_utils
-Description: Description of ublox_utils
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

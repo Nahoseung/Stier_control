@@ -114,16 +114,11 @@ def plot_path(path, ax, options):
     if "plot_start" in options:
         plot_start = options["plot_start"]
 
-    only_line = False
-    if "only_line" in options:
-        only_line = options["only_line"]
-
     # x, y 좌표 분리
     x_vals, y_vals = zip(*path)
     
     # 그래프 설정
-    if not only_line:
-        scatter = ax.scatter(x_vals, y_vals, color=color, picker=True, s=20)
+    scatter = ax.scatter(x_vals, y_vals, color=color, picker=True, s=20)
     ax.plot(x_vals, y_vals, linestyle='-', markersize=2, label=label, color=color)
     
     # 시작점에 빨간 점 표시
@@ -140,77 +135,31 @@ def plot_path_from_file(file_path, ax, options):
 def main():
     fig, ax = plt.subplots(figsize=(10, 10))
 
-    file_path_rddf = "2025-2-11_17-24_rddf-01.txt"
-    options_rddf = {
-        "label" : "2025-2-11_17-24_rddf-01.txt",
-        "color" : "grey",
-        "start_point" : True
-    }
-    plot_path_from_file(file_path_rddf, ax, options_rddf)
-
     # plot drive case
 
-    file_path_drive_005 = "2025-2-12_21-54_25-02-11_test-005_ld-3.0_full.txt"
+    file_path_drive_005 = "2025-2-17_19-10.txt"
     options_drive_005 = {
-        "label" : "pp-old_speed-10.0_ld-3.0",
+        "label" : "2025-2-17_19-10.txt",
         "color" : "red",
-        "start_point" : False,
-        "only_line" : True
+        "start_point" : False
     }
-    #plot_path_from_file(file_path_drive_005, ax, options_drive_005)
+    plot_path_from_file(file_path_drive_005, ax, options_drive_005)
 
-    file_path_drive_006 = "2025-2-12_21-52_25-02-11_test-006_ld-2.0_full.txt"
+    file_path_drive_006 = "2025-2-17_19-12.txt"
     options_drive_006 = {
-        "label" : "pp-old_speed-10.0_ld-2.0",
+        "label" : "2025-2-17_19-12.txt",
         "color" : "blue",
-        "start_point" : False,
-        "only_line" : True
+        "start_point" : False
     }
-    #plot_path_from_file(file_path_drive_006, ax, options_drive_006)
+    plot_path_from_file(file_path_drive_006, ax, options_drive_006)
 
-    file_path_drive_007 = "2025-2-12_21-49_25-02-11_test-007_ld-1.0_full.txt"
+    file_path_drive_007 = "2025-2-17_19-13.txt"
     options_drive_007 = {
-        "label" : "pp-old_speed-10.0_ld-1.0",
-        "color" : "green",
-        "start_point" : False,
-        "only_line" : True
-    }
-    #plot_path_from_file(file_path_drive_007, ax, options_drive_007)
-
-    file_path_drive_009 = "2025-2-14_17-36_25-02-11_test-009_pp-simple_add-stop.txt"
-    options_drive_009 = {
-        "label" : "pp-simple_add-stop",
-        "color" : "green",
-        "start_point" : False,
-        "only_line" : True
-    }
-    plot_path_from_file(file_path_drive_009, ax, options_drive_009)
-
-    file_path_drive_011 = "2025-2-12_14-10_25-02-11_test-011_pp-simple_speed-20.0_try-2.txt"
-    options_drive_011 = {
-        "label" : "pp-simple_speed-20.0",
-        "color" : "red",
-        "start_point" : False
-    }
-    #plot_path_from_file(file_path_drive_011, ax, options_drive_011)
-
-
-    file_path_drive_012 = "2025-2-12_14-24_25-02-11_test-012_pp-old_speed-20.0_ld-1.0.txt"
-    options_drive_012 = {
-        "label" : "pp-old_speed-20.0_ld-1.0",
-        "color" : "blue",
-        "start_point" : False
-    }
-    #plot_path_from_file(file_path_drive_012, ax, options_drive_012)
-
-    file_path_drive_013 = "2025-2-12_14-13_25-02-11_test-013_pp-old_speed-20.0_ld-3.0.txt"
-    options_drive_013 = {
-        "label" : "pp-old_speed-20.0_ld-3.0",
+        "label" : "2025-2-17_19-13.txt",
         "color" : "green",
         "start_point" : False
     }
-    #plot_path_from_file(file_path_drive_013, ax, options_drive_013)
-
+    plot_path_from_file(file_path_drive_007, ax, options_drive_007)
     
     # setup ax
     ax.set_xlabel('X Coordinate')
@@ -221,8 +170,6 @@ def main():
     ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
     ax.legend()
     ax.grid(True)
-
-    plt.savefig("high_res_graph.png", dpi=300, bbox_inches='tight')  # 300 DPI로 저장
     plt.show()
     
     return
